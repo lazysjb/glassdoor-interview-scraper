@@ -142,25 +142,24 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 	time.sleep(2)
 	#endif
 	if (refresh):
-		try:
-			driver.get(currentURL)
-			print("Getting " + currentURL)
-		except Exception as e:
-			if startPage == 1:
-				raise ValueError('error ' + str(e) + '\n {} invalid url'.format(currentURL))
-			else:
-				# I'm not sure better ways of handling max pages
-				# return whatever data we have
-				return data
+		driver.get(currentURL)
+		print("Getting " + currentURL)
 
 	#endif
 	time.sleep(2)
 	HTML = driver.page_source
 	soup = BeautifulSoup(HTML, "html.parser")
+	nextpage_node = soup.find(attrs={'class': 'pagingControls'}).find(attrs={'class': 'next'}).find('a')
+
 	reviews = soup.find_all("li", { "class" : ["empReview", "padVert"] })
 	if (reviews):
 		data = parse_reviews_HTML(reviews, data)
 		print("Page " + str(startPage) + " scraped.")
+
+		if nextpage_node is None:
+			print('Reached last page: {}'.format(currentURL))
+			return data
+
 		if (startPage % 10 == 0):
 			print("\nTaking a breather for a few seconds ...")
 			time.sleep(10)
