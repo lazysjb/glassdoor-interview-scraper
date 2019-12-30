@@ -4,6 +4,9 @@ Glassdoor web crawler and scraper providing interview experience data for [Decod
 
 This was an academic project for CS 410 - Text and Information Systems at UIUC and is no longer maintained.
 
+## Great Additional Resource
+https://github.com/MatthewChatham/glassdoor-review-scraper/blob/master/main.py
+
 ## Installation
 
 * Python 2.7.*

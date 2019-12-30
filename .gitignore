@@ -1,0 +1,7 @@
+# files
+*config.py
+*.json
+
+# directories
+**.idea
+**.DS_Store
