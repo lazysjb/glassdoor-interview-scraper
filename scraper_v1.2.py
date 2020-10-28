@@ -139,14 +139,14 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 	print("\nPage " + str(startPage) + " of " + str(endPage))
 	# currentURL = URL + "_IP" + str(startPage) + ".htm"
 	currentURL = _get_pagenated_url(URL, str(startPage))
-	time.sleep(2)
+	time.sleep(5)
 	#endif
 	if (refresh):
 		driver.get(currentURL)
 		print("Getting " + currentURL)
 
 	#endif
-	time.sleep(2)
+	time.sleep(5)
 	HTML = driver.page_source
 	soup = BeautifulSoup(HTML, "html.parser")
 	nextpage_node = soup.find(attrs={'class': 'pagingControls'}).find(attrs={'class': 'next'}).find('a')
@@ -162,7 +162,7 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 
 		if (startPage % 10 == 0):
 			print("\nTaking a breather for a few seconds ...")
-			time.sleep(10)
+			time.sleep(12)
 		#endif
 		get_data(driver, URL, startPage + 1, endPage, data, True)
 	else:
@@ -187,7 +187,7 @@ def _extract_company_name_map_for_alias(company_alias):
 @click.option('--company_names', default='all')
 def main(company_names):
 	driver = init_driver()
-	time.sleep(3)
+	time.sleep(5)
 	print("Logging into Glassdoor account ...")
 	login(driver, USER_SECRETS['username'], USER_SECRETS['password'])
 	time.sleep(5)

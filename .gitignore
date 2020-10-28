@@ -1,6 +1,4 @@
 # files
-*config.py
-*.json
 
 # directories
 **.idea
